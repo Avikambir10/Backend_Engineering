@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        body{
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .products{
+            height: 90%;
+            width: 100vw;
+            border: 2px solid rgb(43, 255, 0);
+            padding: 1rem;
+        }
+
+        .product-item {
+            width: 80%;
+            margin: 0 auto;
+            border: 1px solid black;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-item h2 {
+            font-size: 1.5rem;
+        }
+
+        .product-item p {
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Include the Navbar Partial -->
+    <%- include('partials/nav') %>
+
+    <div class="products">
+        <% products.forEach(product => { %>
+            <div class="product-item">
+                <h2><%= product.name %></h2>
+                <p>Price: <%= product.price %></p>
+            </div>
+        <% }) %>
+    </div>
+
+    <!-- Include the Footer Partial -->
+    <%- include('partials/footer') %>
+
+</body>
+</html>
