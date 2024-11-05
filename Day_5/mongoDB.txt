@@ -1,0 +1,155 @@
+db.students.insertOne({name:"Chirag",age:20,grade:"A+"})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6729d659d287661973693f67')
+}
+db.students.find()
+{
+  _id: ObjectId('6729d0e7d287661973693f64'),
+  name: 'chirag',
+  age: 20
+}
+{
+  _id: ObjectId('6729d133d287661973693f65'),
+  name: 'danish',
+  age: 20
+}
+{
+  _id: ObjectId('6729d133d287661973693f66'),
+  name: 'bunny',
+  age: 20
+}
+
+
+db.students.insertMany([{name:"bisman",age:16,grade:"B+"},{name:"bhagya",age:17,grade:"A"}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6729d71bd287661973693f68'),
+    '1': ObjectId('6729d71bd287661973693f69')
+  }
+}
+db.students.find()
+{
+  _id: ObjectId('6729d133d287661973693f65'),
+  name: 'danish',
+  age: 20,
+  grade: 'A'
+}
+{
+  _id: ObjectId('6729d133d287661973693f66'),
+  name: 'bunny',
+  age: 20,
+  grade: 'B'
+}
+{
+  _id: ObjectId('6729d659d287661973693f67'),
+  name: 'Chirag',
+  age: 20,
+  grade: 'A+'
+}
+{
+  _id: ObjectId('6729d71bd287661973693f68'),
+  name: 'bisman',
+  age: 16,
+  grade: 'B+'
+}
+{
+  _id: ObjectId('6729d71bd287661973693f69'),
+  name: 'bhagya',
+  age: 17,
+  grade: 'A'
+}
+db.students.find({age: {$gt: 18,$lt: 23} })
+
+{
+  _id: ObjectId('6729d133d287661973693f65'),
+  name: 'danish',
+  age: 20,
+  grade: 'A'
+}
+{
+  _id: ObjectId('6729d133d287661973693f66'),
+  name: 'bunny',
+  age: 20,
+  grade: 'B'
+}
+{
+  _id: ObjectId('6729d659d287661973693f67'),
+  name: 'Chirag',
+  age: 20,
+  grade: 'A+'
+}
+db.students.updateOne({name:"Bunny"},{$set : {grade:"A"} })
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+db.students.updateOne({name:"bunny"},{$set : {grade:"A"} })
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+
+db.students.deleteOne({name:"bisman"})
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+
+db.students.countDocuments({grade:"A"})
+3
+
+
+db.students.find({},{"name":true,"grade":true})
+{
+  _id: ObjectId('6729d133d287661973693f65'),
+  name: 'danish',
+  grade: 'A'
+}
+{
+  _id: ObjectId('6729d133d287661973693f66'),
+  name: 'bunny',
+  grade: 'A'
+}
+{
+  _id: ObjectId('6729d659d287661973693f67'),
+  name: 'Chirag',
+  grade: 'A+'
+}
+{
+  _id: ObjectId('6729d71bd287661973693f69'),
+  name: 'bhagya',
+  grade: 'A'
+}
+
+
+
+
+db.students.find().sort({"age":-1})
+{
+  _id: ObjectId('6729d133d287661973693f65'),
+  name: 'danish',
+  age: 20,
+  grade: 'A'
+}
+{
+  _id: ObjectId('6729d133d287661973693f66'),
+  name: 'bunny',
+  age: 20,
+  grade: 'A'
+}
+{
+  _id: ObjectId('6729d659d287661973693f67'),
+  name: 'Chirag',
+  age: 20,
+  grade: 'A+'
+}
+
