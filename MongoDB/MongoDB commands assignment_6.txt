@@ -10,6 +10,8 @@ university> db.Employees.insertMany([{name: "John Doe", age:30, experience:5, de
     '3': ObjectId('672b269e75b0adb5d70d8193')
   }
 }
+
+
 university> db.Employees.find({$or:[{age:{$gt:30}},{experience:{$gt:5}}]})
 [
   {
