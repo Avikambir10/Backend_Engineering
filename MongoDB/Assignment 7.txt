@@ -1,0 +1,184 @@
+Assignment 7
+
+db.products.insertMany([
+  { name: "Chair", price: 45, stock: 10, category: "furniture", availability: "in stock" },
+  { name: "Table", price: 150, stock: 3, category: "furniture", availability: "limited" },
+  { name: "Laptop", price: 800, stock: 5, category: "electronics", availability: "in stock" },
+  { name: "Smartphone", price: 100, stock: 0, category: "electronics", availability: "out of stock" },
+  { name: "Desk Lamp", price: 25, stock: 15, category: "furniture", availability: "in stock" }
+]);
+
+1: Filter Products by Price Range and Stock
+
+db.products.find({
+  $and: [
+    { price: { $gte: 20, $lte: 100 } },
+    { stock: { $gt: 0 } }
+  ]
+});
+
+7: Special Offers on Furniture
+
+db.products.find({
+  $and: [
+    { category: "furniture" },
+    {
+      $or: [
+        { price: { $lt: 200 } },
+        { stock: { $lt: 5 } }
+      ]
+    }
+  ]
+});
+
+
+
+** 
+
+db.students.insertMany([
+  { name: "Devesh", grade: 90, attendance: 95, age: 17 },
+  { name: "Ashish", grade: 82, attendance: 85, age: 19 },
+  { name: "Bhagya", grade: 88, attendance: 91, age: 18 },
+  { name: "Daksh", grade: 75, attendance: 70, age: 20 },
+  { name: "Ashutosh", grade: 95, attendance: 97, age: 16 }
+]);
+
+2: Qualified Students for Scholarship
+
+db.students.find({
+  $or: [
+    { grade: { $gt: 85 } },
+    { attendance: { $gt: 90 } },
+    { age: { $lt: 18 } }
+  ]
+});
+
+
+6. Find Students Exceeding Both Age and Grade Limits
+
+db.students.find({
+  $or: [
+    { $and: [{ age: { $gt: 18 } }, { grade: { $lt: 60 } }] },
+    { attendance: { $lt: 75 } }
+  ]
+});
+
+
+*
+
+
+db.jobs.insertMany([
+  { title: "Software Engineer", salary: 120000, location: "Delhi" },
+  { title: "Data Scientist", salary: 105000, location: "Ohio" },
+  { title: "Web Developer", salary: 60000, location: "Delhi" },
+  { title: "System Analyst", salary: 75000, location: "Kolkata" },
+  { title: "IT Support", salary: 45000, location: "Chicago" }
+]);
+
+
+ 3: Filter Jobs by Salary and Location
+db.jobs.find({
+  $and: [
+    { salary: { $gt: 50000 } },
+    { location: { $in: ["Delhi", "San Francisco"] } }
+  ]
+});
+
+
+*
+
+db.inventory.insertMany([
+  { name: "Smart TV", category: "electronics", discount: 15, stock: 20 },
+  { name: "Washing Machine", category: "appliance", discount: 5, stock: 8 },
+  { name: "Headphones", category: "electronics", discount: 20, stock: 50 },
+  { name: "Refrigerator", category: "appliance", discount: 10, stock: 0 },
+  { name: "Microwave", category: "electronics", discount: 8, stock: 12 }
+]);
+
+4: Available Electronics with Discount
+
+db.inventory.find({
+  $and: [
+    { category: "electronics" },
+    { discount: { $gte: 10 } },
+    { stock: { $gt: 0 } }
+  ]
+});
+
+
+*
+
+
+db.orders.insertMany([
+  { order_id: 1, status: "pending", customer_type: "VIP", amount: 700, total_amount: 1200, priority: "medium" },
+  { order_id: 2, status: "shipped", customer_type: "regular", amount: 300, total_amount: 400, priority: "low" },
+  { order_id: 3, status: "pending", customer_type: "regular", amount: 600, total_amount: 900, priority: "high" },
+  { order_id: 4, status: "urgent", customer_type: "VIP", amount: 1500, total_amount: 2500, priority: "high" },
+  { order_id: 5, status: "completed", customer_type: "VIP", amount: 200, total_amount: 300, priority: "low" }
+]);
+
+
+5: Identify Pending Orders for VIP Customers
+
+db.orders.find({
+  $and: [
+    { status: "pending" },
+    {
+      $or: [
+        { customer_type: "VIP" },
+        { amount: { $gt: 500 } }
+      ]
+    }
+  ]
+});
+
+
+10: Urgent Orders for High-Value Products
+
+db.orders.find({
+  $or: [
+    { $and: [{ status: "urgent" }, { total_amount: { $gt: 1000 } }] },
+    { priority: "high" }
+  ]
+});
+
+
+*
+
+db.employees.insertMany([
+  { name: "John", experience: 6, department: "Engineering" },
+  { name: "Sarah", experience: 4, department: "Marketing" },
+  { name: "Alex", experience: 8, department: "HR" },
+  { name: "Lisa", experience: 3, department: "Engineering" },
+  { name: "Mark", experience: 10, department: "HR" }
+]);
+
+
+9: Filter Employees by Experience or Department
+db.employees.find({
+  $and: [
+    { experience: { $gt: 5 } },
+    { department: { $in: ["Engineering", "HR"] } }
+  ]
+});
+
+
+db.items.insertMany([
+  { name: "Antivirus Software", type: "software", price: 50 },
+  { name: "VPN Service", type: "service", price: 75 },
+  { name: "Productivity Suite", type: "software", price: 120 },
+  { name: "Cloud Storage", type: "service", price: 60 },
+  { name: "Game App", type: "software", price: 40 }
+]);
+
+ 8: Available Software and Services
+
+db.items.find({
+  $and: [
+    { type: { $in: ["software", "service"] } },
+    { price: { $lt: 100 } }
+  ]
+});
+
+
+
